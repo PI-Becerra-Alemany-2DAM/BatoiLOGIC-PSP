@@ -23,7 +23,9 @@ public class ServicioComandes implements Runnable {
     private void lanzarProcesoExterno() {
         try {
             //ProcessBuilder lanzando la clase compilada dentro de la carpeta "bin"
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "bin", "ProcesoExportarYActualizar");
+            String rutaJava = System.getProperty("java.home") + "/bin/java";
+            String classpath = System.getProperty("java.class.path");
+            ProcessBuilder pb = new ProcessBuilder(rutaJava, "-cp", classpath, "ProcesoExportarYActualizar");
 
             // Redirigimos la salida y errores del proceso hijo a la consola de este servicio
             pb.inheritIO();
